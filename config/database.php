@@ -1,4 +1,7 @@
 <?php
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 // Configuración de conexión a la base de datos
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root'); // Cambiar según tu configuración
@@ -17,7 +20,16 @@ function conectarDB() {
     $conn->set_charset(DB_CHARSET);
     return $conn;
 }
+function UserType($tipo){
+    $text_usuarios[0]="Desarrollador";
+    $text_usuarios[1]="Administrador";
+    $text_usuarios[2]="Operador";
+    $text_usuarios[3]="Conductor";
+    $text_usuarios[4]="Cliente";
+    return  $text_usuarios[$tipo];
+}
+    
 
-// Iniciar sesión
-session_start();
+
+if (session_status() === PHP_SESSION_NONE) { session_start(); }
 ?>
